@@ -1,4 +1,4 @@
-## (教學來源)[https://www.youtube.com/watch?v=0qtg-9M3peI&t=410s]
+## [教學來源](https://www.youtube.com/watch?v=0qtg-9M3peI&t=410s)
 ## 安裝
 
 `npm create vite@latest`
