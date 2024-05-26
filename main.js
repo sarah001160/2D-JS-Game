@@ -13,10 +13,13 @@ const speedDown = 300;
 class GameScene extends Phaser.Scene {
   constructor() {
     super("scene-game")
-    this.player
-    this.cursor
-    this.playerSpeed = speedDown + 50
-    this.target
+    this.player;
+    this.cursor;
+    this.playerSpeed = speedDown + 50;
+    this.target;
+    this.points = 0;
+    this.textScore;
+    this.textTime;
   }
 
   preload() {
@@ -31,18 +34,32 @@ class GameScene extends Phaser.Scene {
     this.player.setImmovable(true); // 可動
     this.player.body.allowGravity = false; // 但不給重力
     this.player.setCollideWorldBounds(true); // 不讓它跑出畫框外
+    this.player.setSize(this.player.width - this.player.width / 4, this.player.height / 6).
+      setOffset(this.player.width / 10, this.player.height - this.player.height / 10);
 
     this.target = this.physics.add.image(0, 0, "apple").setOrigin(0, 0);
     this.target.setMaxVelocity(0, speedDown); // 設定掉落速度
 
+    this.physics.add.overlap(this.target, this.player, this.targetHit, null, this)
+
     this.cursor = this.input.keyboard.createCursorKeys();
+
+    this.textScore = this.add.text(sizes.width - 120, 10, "Score:0", {
+      font: "25px Arail",
+      fill: "#000000",
+    });
+
+    this.textTime = this.add.text(10, 10, "Remaining Time: 00", {
+      font: "25px Arail",
+      fill: "#000000",
+    })
 
   }
 
   update() {
     if (this.target.y >= sizes.height) {
-      this.target.setY(0);
-      this.target.setX(this.getRandomX())
+      this.target.setY(0); // 設定高度0
+      this.target.setX(this.getRandomX()) // 設定寬度、由函數getRandomX控制
     }
 
 
@@ -58,8 +75,16 @@ class GameScene extends Phaser.Scene {
   }
 
   getRandomX() {
-    return Math.floor(Math.random() * 480); // 回傳480倍數的亂數整數
+    return Math.floor(Math.random() * 480); // 回傳 0 < ~ < 1之間的亂數乘上480
   }
+
+  targetHit() {
+    this.target.setY(0);
+    this.target.setX(this.getRandomX());
+    this.points++;
+    this.textScore.setText(`Score: ${this.points}`);
+  }
+
 }
 
 // 設定參數
@@ -75,7 +100,7 @@ const config = {
       debug: true,
     }
   },
-  scene: [GameScene] // 背景
+  scene: [GameScene] // 使用這個class函數
 }
 
 

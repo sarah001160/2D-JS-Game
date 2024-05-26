@@ -3,7 +3,6 @@
   --dkClr:#181818;
   --liClr: whitesmoke;
   --accClr: #0D0D35;
-
 }
 
 
@@ -47,4 +46,8 @@ main {
   /* --- */
   display: flex;
   z-index: 1;
+}
+
+.white {
+  color: var(--liClr);
 }
