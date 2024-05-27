@@ -3,7 +3,9 @@
 
 `npm create vite@latest`
 
-#### project name 請打 ./ 表示當前資料夾就是專案
+#### project name 請打
+`./` 
+#### 表示當前資料夾就是專案
 
 ### 選 vanilla、JavaScript
 
