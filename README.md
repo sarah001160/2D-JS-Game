@@ -9,7 +9,7 @@
 
 ### 選 vanilla、JavaScript
 
-### 安裝 npm 套件，輸入以下指令在終端機，編輯器會自動幫你下載檔案
+### 終端機輸入下列指令安裝 npm 套件包 (會自動下載到你的專案、會看見 node_module 資料夾，裡面有很多檔案)
 
 `npm install`
 
